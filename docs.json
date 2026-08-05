@@ -4,16 +4,16 @@
   "theme": "willow",
 
   "fonts": {
-  "heading": {
-    "family": "Cormorant Upright",
-    "weight": 700
+    "heading": {
+      "family": "Cormorant Upright",
+      "weight": 700
+    },
+    "body": {
+      "family": "Aref Ruqaa",
+      "weight": 400
+    }
   },
-  "body": {
-    "family": "Aref Ruqaa",
-    "weight": 400
-  }
-},
-  
+
   "colors": {
     "primary": "#2fc7c9",
     "light": "#c7d8ea",
@@ -21,12 +21,13 @@
   },
 
   "logo": {
-  "light": "Punctuowlity-logo.PNG",
-  "dark": "Punctuowlity-logo.PNG",
-  "href": "https://apursley2012.github.io/punctuowlity"
-}
-  
+    "light": "Punctuowlity-logo.PNG",
+    "dark": "Punctuowlity-logo.PNG",
+    "href": "https://apursley2012.github.io/punctuowlity"
+  },
+
   "favicon": "/Punctuowlity-logo.PNG",
+
   "navbar": {
     "primary": {
       "type": "button",
@@ -34,7 +35,7 @@
       "href": "https://apursley2012.github.io/punctuowlity"
     }
   },
-  
+
   "navigation": {
     "tabs": [
       {
