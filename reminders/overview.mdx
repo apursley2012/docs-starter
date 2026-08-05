@@ -1,0 +1,42 @@
+---
+title: "How PunctuOwlity Reminders and Browser Alerts Work"
+sidebarTitle: Overview
+description: "Learn how per-event reminder toggles, browser notifications, and alarm icons work together to keep you informed without overwhelming you."
+---
+
+PunctuOwlity reminders are designed around a single principle: useful alerts, not constant noise. Each event has its own reminder toggle, so you decide exactly which events deserve a notification — and a glanceable alarm icon on every card keeps that choice visible at all times.
+
+## How reminders work
+
+Reminders fire as **browser pop-up notifications** on the day of the event. PunctuOwlity compares today's date against each event's date when you open the app, then sends a notification for any event that matches and has its reminder enabled.
+
+- **Delivery day:** Notifications fire on the same day as the event — not in advance.
+- **Permission required:** You must have chosen **Allow SMS Notifications** during the one-time preference step after signup. If you chose **No, thanks**, notifications will not fire regardless of the reminder toggle.
+- **Notification content:** Each notification shows the event title as the headline and its scheduled time in the body (for example, headline *Dentist*, body *Scheduled for 01:30PM*), so you know immediately whether it needs your attention.
+- **Once per session:** PunctuOwlity tracks which notifications have already fired during your current browser session. If you reload the page or switch tabs and come back, you will not see the same notification again in that session.
+
+## The alarm icon
+
+Every event card displays a small alarm icon that reflects the current reminder state for that event. You never need to open an event to know whether it will notify you.
+
+| Icon | Color | Meaning |
+|------|-------|---------|
+| Alarm-on | Green | Reminder is **enabled** — you will receive a notification on the event's date |
+| Alarm-off | Red | Reminder is **disabled** — no notification will fire for this event |
+
+To change the reminder state for an event, open the event's edit form and flip the **Reminder** switch. Save the event to apply the change. The alarm icon on the card updates immediately to reflect the new setting.
+
+## Reminder philosophy
+
+PunctuOwlity keeps reminders intentionally minimal. As the app's design notes put it: *"More notifications are not better notifications."* Repeating alerts or sending them for every event can train you to dismiss them without reading — the opposite of helpful.
+
+The current implementation stays deliberately small in scope: one notification per event per session, fired only on the event's actual date. Each notification includes the event title and time so you can act on it without opening the app first. Reminder status is stored with the event and displayed on the card so the state is always honest and visible. You opt in to the whole system at signup and opt in to individual reminders per event, which means every notification you receive is one you asked for.
+
+<CardGroup cols={2}>
+  <Card title="SMS Preferences" icon="message" href="/reminders/sms-notifications">
+    Set or understand your notification preference from the signup screen.
+  </Card>
+  <Card title="Browser Notifications" icon="bell" href="/reminders/browser-notifications">
+    Learn how browser notifications work and how to manage permissions.
+  </Card>
+</CardGroup>

@@ -1,0 +1,80 @@
+---
+title: 'Responsive Web Conversion Is Not the Same as Redesign'
+sidebarTitle: Responsive Design
+description: 'Converting an Android app to web means faithfully scaling the original interface, not reimagining it. Here is how PunctuOwlity approached that distinction.'
+author: 'Alysha Pursley'
+---
+
+Converting PunctuOwlity from an Android application into a static website looked straightforward at first. The layouts already existed, the colors and fonts were defined, and the main workflow was clear. The difficult part was making the interface responsive without quietly turning it into a different design.
+
+## The original relationships matter
+
+The Android events screen uses a specific sequence: toolbar, logo, title, search, month banner, dotted divider, category tabs, another divider, and a two-column card grid. Each event card follows its own internal hierarchy — day number, weekday, title, and time are arranged in a consistent order that you read the same way every time. Those relationships are part of the interface identity, not incidental details that can be replaced when more screen space becomes available.
+
+The pressure to reorganize shows up quickly on desktop. A wider viewport creates room for four columns, a persistent sidebar, or a conventional navigation bar. Any of those approaches would use the horizontal space efficiently — but the result would no longer be the same screen. Users familiar with the Android app would encounter a different visual logic without any signal that the interface had changed.
+
+The better solution was to keep the two-column composition intact and scale the complete arrangement upward. Preserving the sequence means the interface stays recognizable across every context where it appears.
+
+<Tip>
+Before writing a single responsive rule, write down the fixed relationships in your source interface — the elements that appear together, the order they follow, and the compositions that define each screen. That inventory becomes your constraint list during conversion.
+</Tip>
+
+## Android constraints do not become CSS automatically
+
+Android XML positions views through explicit dimensions, margins, and constraint relationships. A browser uses normal document flow, CSS Grid, Flexbox, media queries, and relative sizing. The underlying systems are different enough that a direct one-to-one translation is not possible — but the visual result can still remain faithful if you choose the right CSS primitives for each job.
+
+For PunctuOwlity, CSS Grid preserves the two-column event layout. The grid grows with the viewport without changing its fundamental structure, because the columns are defined as a proportion rather than a fixed pixel count. Aspect ratios protect the original card shape, keeping cards from becoming too tall or too flat as their width changes. Flexible widths let the overall layout breathe, and media queries reduce dimensions only when necessary rather than restructuring the page at every breakpoint.
+
+The single-column fallback is reserved for screens too narrow to hold two readable cards side by side. It is a last resort, not the starting point.
+
+<Note>
+The `aspect-ratio` CSS property is particularly useful when translating Android card layouts. Android cards often have proportions enforced by explicit height attributes in XML. CSS `aspect-ratio` gives you a direct equivalent that scales with the card's width — no JavaScript measurement required.
+</Note>
+
+## Scaling includes more than width
+
+A layout can have the correct column structure and still look wrong when the individual pieces are out of proportion with each other. The logo, heading, search bar, month banner, category tabs, card text, icons, gutters, and floating action button all need to scale together. If you increase only the cards without adjusting their content, the text inside looks too small. If you increase only the text without adjusting the cards, the layout feels crowded and misaligned.
+
+Proportion errors at this level are difficult to catch by looking at the CSS alone. The numbers can be self-consistent and still produce a result that does not match the original.
+
+Comparing the rendered web screen against the completed Android screenshot exposed details that were easy to overlook in the XML: the height of the month banner relative to the cards below it, the white background behind the category tabs that separates them visually from the content, the dark gap between cards that gives the grid its definition, and the rounded-square shape of the floating add button. Each of those details contributes to the overall impression of fidelity. Getting the column count right while losing those details would produce a technically responsive layout that still does not look like the original.
+
+<Tip>
+Do your proportion checks holistically, not element by element. Place your web rendering and your source screenshot side by side and look at the whole screen before zooming in on any single component. Individual elements that look fine in isolation often reveal proportion mismatches when you see everything together.
+</Tip>
+
+## Data can break the visual layout
+
+Not every visual problem during a responsive conversion is a CSS problem. At one point during development, the PunctuOwlity event cards displayed `undefined` where the weekday label belonged and showed an entire ISO date string in the large day-number position. The oversized date text stretched the cards well beyond their intended height and made the entire layout appear incorrectly scaled.
+
+The Android `Event` model handled this automatically. It calculated the weekday from the stored date and extracted the day number before anything reached the display layer. The web version had no equivalent step. Raw data flowed directly from storage into the card template, and the template had no way to know that it was receiving an unprocessed ISO string instead of a formatted day number.
+
+Adding event normalization — parsing the date on load, extracting the day number and weekday, storing both in a consistent format — fixed the data and restored the intended card composition. That correction was more accurate than trying to compensate with smaller text or constrained card heights. The layout was not the problem. The data was.
+
+<Note>
+When converting a mobile app to the web, pay close attention to any logic in the original that transforms data before display. The Android version of PunctuOwlity handled that transformation automatically before anything reached the screen. The web version needs the same step to be present and explicit, or raw unformatted data will appear where clean values are expected.
+</Note>
+
+## Responsive should mean flexible, not unfamiliar
+
+A responsive interface should remain recognizable at every supported size. Controls can grow, spacing can adapt, and content can wrap when necessary — but you should not have to relearn the screen because the viewport changed. An interface that restructures itself significantly at different sizes imposes a learning cost that undermines the familiarity users built up on other devices.
+
+That is the standard PunctuOwlity holds. The website does not imitate an Android device frame or add a chrome border to simulate a phone. But it preserves the same visual order, the same actions, and the same emphasis across every screen width. Desktop space is used to make the original interface larger and easier to read, not to justify replacing it with something more "web-native."
+
+Users who encounter PunctuOwlity on a desktop after using it on mobile should feel orientation, not disorientation. The toolbar is still at the top. The categories still filter the grid. The add button is still in the lower right. The interface grew — it did not change shape.
+
+## What I would carry into another conversion
+
+Start with an inventory of fixed relationships before writing any responsive rules. Identify the elements that must appear together, the sequences that define each screen, and the proportions that give the design its character. Treat that inventory as a checklist — not a wish list — that your responsive implementation needs to satisfy.
+
+Separate functional problems from layout problems early. A card that shows `undefined` is not a CSS bug. A button that disappears off-screen is not a data bug. Keeping those categories distinct helps you reach the correct fix faster rather than chasing symptoms with the wrong tools.
+
+Verify source assets before recreating them. Icons that look simple in a screenshot often have subtle shapes — corner radii, stroke weights, or proportions — that are easy to get slightly wrong when redrawing from memory. Finding the original asset or its specification is almost always faster than iterating on a recreation.
+
+Compare proportions holistically rather than validating individual components in isolation. An element can look correct when you inspect it alone and still be wrong in context. The side-by-side screenshot comparison is the most reliable check available.
+
+<Tip>
+Keep the distinction between conversion and redesign explicit throughout the project. Responsive work should solve clipping, readability, and interaction across screen sizes. It should not erase the decisions that made the original project recognizable. When you are tempted to restructure rather than scale, ask whether you are solving a real problem or just using the available space.
+</Tip>
+
+Most importantly: the goal of a responsive conversion is to make the original design work well everywhere, not to produce the design you would have created if you had started fresh on the web. Those are two different projects, and conflating them produces a result that satisfies neither.

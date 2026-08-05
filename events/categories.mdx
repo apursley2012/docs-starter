@@ -1,0 +1,51 @@
+---
+title: "Organize Your Events Using PunctuOwlity Categories"
+sidebarTitle: Categories
+description: "Learn about PunctuOwlity's four event categories — Birthdays, Appointments, Trips, and All Events — and how filtering and auto-detection work."
+---
+
+PunctuOwlity groups your events into four categories so you can focus on one type of event at a time without wading through everything in your calendar. Each event belongs to exactly one specific category, and a dedicated tab on the events screen lets you switch between views instantly.
+
+## The four categories
+
+<CardGroup cols={2}>
+  <Card title="All Events" icon="calendar">
+    The default view — shows every event you have saved, regardless of which category it belongs to. Use this tab for a complete picture of your upcoming schedule.
+  </Card>
+  <Card title="Birthdays" icon="cake">
+    Displays events in the **birthday** category. Use this tab for birthdays and personal celebrations so they are never buried under work appointments or travel plans.
+  </Card>
+  <Card title="Appointments" icon="stethoscope">
+    Displays events in the **appointment** category. Covers medical, dental, professional, and any other scheduled appointment that has a fixed time and location.
+  </Card>
+  <Card title="Trips" icon="plane">
+    Displays events in the **trip** category. Use this tab for holidays, vacations, travel days, and any excursion away from home.
+  </Card>
+</CardGroup>
+
+## Filtering by category
+
+The category tabs sit just below the date banner on the events screen. Tapping any tab immediately filters the events grid to show only the events that belong to that category — no page reload required. The active tab is highlighted so you always know which view you are in. To return to the full list, tap **All Events**.
+
+## Automatic category detection
+
+When you add a new event, PunctuOwlity inspects the event title and assigns a category automatically based on keywords it finds. You do not need to select a category manually — just type a clear title and the app takes care of the rest.
+
+The detection rules are:
+
+| Keyword in event title | Detected category |
+|---|---|
+| `birthday` | Birthdays |
+| `dentist`, `dental`, `doctor` | Appointments |
+| `trip`, `travel`, `vacation` | Trips |
+| Anything else | All Events (general) |
+
+Keyword matching is case-insensitive, so *Birthday*, *BIRTHDAY*, and *birthday* all trigger the same detection.
+
+<Tip>
+  Category detection runs once when you first save a new event, based on the title you enter at that time. To ensure an event lands in the right category, use a title that includes one of the keywords above — for example, name a trip *Weekend Vacation* rather than just *Weekend* so it is filed under Trips automatically.
+</Tip>
+
+<Note>
+  An event belongs to only one specific category tab at a time, but it always appears in the **All Events** tab regardless of which category it is assigned to. Switch to All Events any time you want to see your complete schedule in one place.
+</Note>

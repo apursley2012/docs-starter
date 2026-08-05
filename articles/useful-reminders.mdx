@@ -1,0 +1,78 @@
+---
+title: 'What Separates a Useful Event Reminder from Noise?'
+sidebarTitle: Useful Reminders
+description: 'Learn what separates a helpful event reminder from noise — and how PunctuOwlity uses context, permission, visibility, and data integrity to get it right.'
+author: 'Alysha Pursley'
+---
+
+A reminder is supposed to reduce the chance that something important gets forgotten. That sounds simple, but a notification can become useless just as quickly as it can become helpful. If it appears too often, arrives without enough information, or takes control away from the user, it becomes another alert to dismiss.
+
+## The reminder needs context
+
+An alert that only says "Event coming up" forces you to open the app before you know whether the notification matters. A useful reminder should identify the event and show the scheduled time immediately, giving you enough information to decide whether you need to act — right from the notification itself.
+
+PunctuOwlity keeps the event title, date, time, and reminder state connected in the same record so the interface can communicate those details consistently. Nothing important gets separated into a different storage layer that could fall out of sync.
+
+The event cards apply the same principle. The weekday and large day number establish when the event occurs before you read the title or time. That visual hierarchy makes the information easier to scan than a plain list of full date strings — your eye lands on the day first, then moves to the details.
+
+<Tip>
+Design your reminders to answer the two questions a user asks the moment they see a notification: "What is this?" and "When is it?" If either answer requires opening the app, the notification is doing less than it could.
+</Tip>
+
+## Permission should be a real choice
+
+PunctuOwlity asks whether you want SMS alerts before continuing to the main screen. The important part of that step is not the specific technology. It is the fact that reminders are optional. You should understand what you are enabling and be able to decline without losing access to the rest of the application.
+
+Treating opt-in as a genuine choice also means not burying the decline option or framing it in a way that makes refusal feel like a mistake. Permission prompts that manipulate or mislead undermine trust before the reminder system has a chance to prove its value.
+
+That principle becomes especially important on the web. A static site cannot safely send SMS messages by itself because a real SMS service requires protected credentials and a backend. The web version of PunctuOwlity preserves the choice and uses browser notifications where available. It does not pretend that a static page can securely perform a server-side task.
+
+<Note>
+The web version of PunctuOwlity uses browser notifications rather than SMS because a static site cannot safely handle the credentials a real SMS service requires. The choice to opt in or out remains the same — only the delivery mechanism differs.
+</Note>
+
+## Reminder status should stay visible
+
+Once you enable a reminder, you should not have to remember that you enabled it. The green alarm-on icon and red alarm-off icon make the state visible directly on each event card. That small visual detail answers an important question without requiring another screen: "Will this event remind me?"
+
+Visibility matters because a hidden state is effectively no state at all. If you cannot tell at a glance whether a reminder is active, you might enable it twice, or assume it is active when it was quietly cleared. The color-coded icon keeps that information surface-level and immediate.
+
+The same state needs to remain attached when an event is edited. Storing reminder status with the event record prevents the icon from becoming decorative or misleading after a save. Your edits to the event title, date, or time should not silently reset the reminder you already configured.
+
+<Tip>
+Persist reminder state alongside the event record itself, not as a parallel lookup. When you store them separately, an edit or deletion can orphan the reminder state and leave the interface showing stale information.
+</Tip>
+
+## More notifications are not better notifications
+
+A common mistake in reminder design is treating frequency as reliability. Sending more alerts does not make a system more trustworthy — it makes it more intrusive. Repeating the same notification can train you to dismiss anything from that source without reading it, which is the opposite of what reminders are for.
+
+A better approach is to give you control over which events deserve reminders and make each notification specific enough to act on. One well-timed alert that tells you exactly what is happening is more useful than three vague ones.
+
+PunctuOwlity's current static implementation keeps that scope intentionally small. It records whether the reminder is enabled and can notify you when an event falls on the current date. That constraint is deliberate. A more complete production system could add the following:
+
+- **Configurable lead times** — notify you one day before, one hour before, or at a custom interval
+- **Recurring events** — repeat a reminder on a schedule without re-creating the event
+- **Quiet hours** — suppress notifications during times you mark as off-limits
+- **Delivery history** — show you which reminders fired and when
+- **Separate channels** — let you choose between browser, email, or SMS per event
+
+Each of those features should extend user control rather than increase the volume of notifications you have to manage.
+
+## Useful reminders begin with reliable data
+
+Even a well-timed, well-designed alert fails if the underlying date or time is wrong. A notification that fires at the right moment for the wrong event, or references a date that was never parsed correctly, erodes trust in the entire reminder system.
+
+During the web conversion, older event records sometimes contained full ISO date strings or raw 24-hour time values that the original Android app handled through its own model layer. The web version had no equivalent, so those values surfaced in the interface unchanged — and the reminders would have referenced them just as incorrectly.
+
+Normalizing those values became part of the reminder work. Extracting the day number from an ISO date, converting 24-hour times into a consistent display format, and validating that both fields are populated before a reminder is allowed to register — those steps are not optional cleanup. They are the foundation that everything else depends on.
+
+<Note>
+Older event records from PunctuOwlity's Android version sometimes stored raw date strings that the original app converted before display. The web version applies the same conversion step so that what you see on a card — the day number, weekday, and time — is always consistent, regardless of how the event was originally created.
+</Note>
+
+<Tip>
+Treat date and time normalization as part of your reminder implementation, not a separate data-quality task. A reminder that fires at the right moment but references a malformed date is still a broken reminder.
+</Tip>
+
+Reminder design is not only about showing a notification. It depends on clear permission, visible state, reliable event data, useful context, and enough restraint that you continue to trust the alerts you receive. PunctuOwlity's implementation keeps those principles in view even at a small static-site scale — because the same principles apply whether you are building a simple browser notification or a multi-channel production system.

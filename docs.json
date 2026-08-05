@@ -1,0 +1,78 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "PunctuOwlity",
+  "theme": "almond",
+  "colors": {
+    "primary": "#f1575d",
+    "light": "#c7d8ea",
+    "dark": "#000050"
+  },
+  "favicon": "/favicon.svg",
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Open App",
+      "href": "https://apursley2012.github.io/punctuowlity"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guide",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "account-setup"
+            ]
+          },
+          {
+            "group": "Using PunctuOwlity",
+            "pages": [
+              "events/overview",
+              "events/add-edit-delete",
+              "events/categories",
+              "events/search"
+            ]
+          },
+          {
+            "group": "Reminders",
+            "pages": [
+              "reminders/overview",
+              "reminders/sms-notifications",
+              "reminders/browser-notifications"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "faq",
+              "troubleshooting"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Learn",
+        "groups": [
+          {
+            "group": "Articles",
+            "pages": [
+              "articles/useful-reminders",
+              "articles/responsive-conversion"
+            ]
+          },
+          {
+            "group": "Case Study",
+            "pages": [
+              "case-study/overview",
+              "case-study/design-decisions"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

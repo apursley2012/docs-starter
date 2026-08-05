@@ -1,0 +1,52 @@
+---
+title: "Set Your SMS Notification Preferences in PunctuOwlity"
+sidebarTitle: SMS Preferences
+description: "Understand the SMS preference screen shown after signup, what each option does, and how your choice controls browser notification access in PunctuOwlity."
+---
+
+Right after you create your PunctuOwlity account, the app shows you a one-time notification preference screen before taking you to your events. The choice you make here controls whether PunctuOwlity can send you browser notifications for events with reminders enabled — so it is worth understanding what each option does.
+
+## The notification preference screen
+
+The preference screen appears **once**, immediately after you sign up and before you see your events calendar for the first time. It will not appear again on subsequent logins.
+
+The screen presents two options:
+
+- **Allow SMS Notifications** — a turquoise button that opts you in to event notifications
+- **No, thanks** — a coral button that opts you out
+
+Your choice is saved to your browser's local storage and does not expire. PunctuOwlity reads it every time you open the app to decide whether to request notification permission.
+
+## What each choice does
+
+### Allow SMS Notifications
+
+Choosing this option tells PunctuOwlity you want to receive event notifications. The app will:
+
+1. Save your preference in your browser's local storage.
+2. Prompt your browser to grant notification permission (your browser may show its own confirmation dialog).
+3. Fire a browser pop-up notification on the day of any event that has its **Reminder** toggle switched on.
+
+### No, thanks
+
+Choosing this option tells PunctuOwlity to skip notifications entirely. The app will:
+
+1. Save your preference in your browser's local storage.
+2. Skip the browser notification permission prompt.
+3. Never fire pop-up notifications, even for events with the Reminder toggle on.
+
+Your event cards will still display the green alarm-on or red alarm-off icon to show each event's reminder state — but those icons will be visual-only, and no notifications will fire.
+
+<Note>
+  PunctuOwlity is a static web app and cannot send real SMS text messages. No backend or SMS credentials are involved. The **Allow SMS Notifications** label reflects the feature's original mobile design. All notifications in the web app are delivered as browser pop-up notifications through the browser's built-in Notification API.
+</Note>
+
+## Changing your preference
+
+Your SMS preference is stored in your browser's local storage for `apursley2012.github.io`. There is no in-app settings screen to change it after signup.
+
+To reset your preference, clear your browser's site data for `apursley2012.github.io`. After clearing site data, you will be taken through the signup flow again, including the notification preference screen.
+
+<Warning>
+  Clearing site data for apursley2012.github.io removes **all** locally stored information — including your events, your account credentials, and your notification preference. You will need to create a new account and re-enter your events after clearing site data.
+</Warning>

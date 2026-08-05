@@ -1,0 +1,61 @@
+---
+title: 'PunctuOwlity Design Decisions and Technical Choices'
+sidebarTitle: Design Decisions
+description: "The technical choices behind PunctuOwlity's storage layer, authentication, reminder system, responsive behavior, and the corrections made along the way."
+author: 'Alysha Pursley'
+---
+
+With the visual requirements established, every significant decision in the web conversion came down to finding a browser-native substitute for an Android-native capability — without letting those substitutions change what users see or how the interface feels. The sections below trace each of those decisions in the order they affected the build.
+
+## From SQLite to Browser Storage
+
+The Android application stored user accounts and event records in SQLite. A static GitHub Pages site cannot run a relational database, so the data layer was rebuilt entirely on browser storage. `localStorage` holds user accounts, SMS preferences, and event records between sessions, while `sessionStorage` tracks the currently signed-in user for the duration of a visit. The result is persistent local interaction with no backend required.
+
+A normalization layer sits between raw stored values and the interface. When an event record contains a raw ISO date such as `2026-07-18`, the app calculates and displays `SAT` and `18` — the weekday abbreviation and two-digit day number that the Android model's helper methods would have provided. Raw 24-hour times are converted to the compact 12-hour AM/PM format the original cards used. This normalization was essential for two reasons: it prevented database-shaped values from surfacing in the UI, and it fed the reminder system with clean, consistent data it could act on reliably.
+
+## Authentication and Account Creation
+
+The sign-up page collects six fields: first name, last name, email address, optional phone number, username, and password (entered twice for confirmation). Duplicate usernames and duplicate email addresses are rejected at submission time. The login page then accepts either the saved username or the saved email address alongside the matching password, replicating the flexibility of the original Android login screen.
+
+<Note>
+  This is local application authentication, not a production identity service. It is appropriate for a self-contained static demonstration, but any deployed application handling real user accounts would require a secure backend, server-side password hashing, protected session tokens, account recovery tools, and server-side validation at every entry point.
+</Note>
+
+## Reminders and SMS
+
+The Android source declared permission to send SMS messages but did not include a complete SMS delivery or scheduling system — the plumbing for an outbound message was never finished. A static webpage compounds that gap: it cannot safely store credentials for an SMS provider, and it has no persistent process to fire a message at a future time.
+
+Rather than remove the feature, the SMS preference-choice screen was kept in the onboarding sequence. It is presented on first arrival at the events screen after login — the same point in the flow where the Android app would have surfaced the choice. The user's selection is saved in browser storage. At runtime, browser notifications serve as the available static-site substitute for SMS delivery — they require no credentials, no server, and no background process beyond the open browser tab.
+
+The event form stores whether a reminder is enabled per event. The event card reads that value and renders the appropriate alarm-on or alarm-off vector icon, so the reminder state is always visible at a glance without opening the event.
+
+## Responsive Behavior
+
+The responsive work focused on scaling rather than rearranging. The event grid remains two columns across phone, tablet, and desktop widths — the same two-column composition that defined the Android layout. Text, controls, spacing, and imagery grow proportionally with the available space. Only very narrow screens, where a two-column card layout would produce clipped content and unusable tap targets, fall back to a single column.
+
+Accessibility considerations ran in parallel with the layout work. Form fields are sized for comfortable touch input. Every button carries an accessible label. Decorative images include alternative text. Status messages — such as login errors or save confirmations — are delivered through ARIA live regions so screen readers announce them without a page reload.
+
+## Challenges and Corrections
+
+The hardest part of the conversion was maintaining visual fidelity while translating the fixed constraints of Android's XML into flexible CSS. Small deviations in maximum widths, card aspect ratios, icon paths, or breakpoint values were enough to make the browser version read as a new dashboard rather than the original app. Each time that happened, the fix was to return to the screenshots and XML measurements rather than to adjust by eye.
+
+The raw saved-value problem took longer to diagnose. Events initially displayed full ISO date strings in the date-number slot and showed no weekday abbreviation at all, because the browser's `localStorage` data had no equivalent to the Android model's computed properties. The normalization layer described in the storage section resolved both the data integrity issue and the visual layout issue at once — once dates and times were always converted on read, the cards matched the screenshots exactly.
+
+## Result
+
+The completed web version preserves PunctuOwlity's original identity and core workflow while removing every dependency on Android, SQLite, and device-only components. It ships as a static HTML, CSS, and JavaScript project with no build step, supports persistent local interaction through browser storage, and deploys directly to GitHub Pages.
+
+The project's central lesson is worth stating plainly:
+
+> **Responsive conversion is not the same thing as redesign.** The successful approach was to protect the existing visual relationships first, then make those relationships flexible enough to work across screen sizes.
+
+---
+
+<CardGroup cols={2}>
+  <Card title="Reminders" icon="bell" href="/articles/useful-reminders">
+    How PunctuOwlity stores and surfaces event reminders.
+  </Card>
+  <Card title="Responsive Design" icon="mobile" href="/articles/responsive-conversion">
+    Why responsive conversion and redesign are different problems.
+  </Card>
+</CardGroup>

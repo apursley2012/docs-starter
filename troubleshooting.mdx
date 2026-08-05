@@ -1,0 +1,94 @@
+---
+title: "Troubleshooting Guide for PunctuOwlity Event Tracker"
+sidebarTitle: "Troubleshooting"
+description: "Step-by-step fixes for PunctuOwlity problems including events disappearing, login errors, notification issues, and broken display in your browser."
+---
+
+Because PunctuOwlity stores everything in your browser rather than on a server, most problems trace back to storage, session, or permission settings that you can resolve in a few steps. Work through the relevant section below to get back on track.
+
+<AccordionGroup>
+  <Accordion title="My events disappeared / my data is gone">
+    **Why this happens**
+
+    PunctuOwlity saves your events locally in your browser. That data is cleared whenever your browser's site data for `apursley2012.github.io` is wiped — either manually through browser settings, automatically by the browser when storage limits are exceeded, or because the session was opened in private or incognito mode.
+
+    **How to fix it**
+
+    1. **Private/incognito mode** — locally stored data does not persist after you close an incognito window. Switch to a regular browser window, sign up again, and use that profile going forward.
+    2. **Cleared browser data** — if you (or a browser clean-up tool) erased site data, the events cannot be recovered. Re-add your events manually.
+    3. **Storage quota** — if your browser's storage quota was exceeded, the write silently failed. Free up space by clearing data from other sites, then re-enter your events.
+
+    To avoid future data loss, always use PunctuOwlity in the same regular (non-incognito) browser profile and avoid clearing site data for `apursley2012.github.io`.
+  </Accordion>
+
+  <Accordion title="I can't log in — 'Invalid Username or Password'">
+    **Why this happens**
+
+    The login screen looks up your credentials in your browser's local storage. If the account was created in a different browser or on a different device, it does not exist here. The error message **Invalid Username or Password** also appears if your username, email, or password doesn't match exactly what was saved at sign-up.
+
+    **How to fix it**
+
+    1. Double-check your username or email address spelling — the login field is case-insensitive, but typos still matter.
+    2. Re-enter your password carefully — passwords are case-sensitive and must match exactly.
+    3. If you're on a different browser or device from where you signed up, your account doesn't exist there. Create a new account in this browser to continue.
+    4. If you've forgotten your password and cannot recover it, clear site data for `apursley2012.github.io` in your browser settings and sign up again — note that this also removes all stored events.
+  </Accordion>
+
+  <Accordion title="My notifications aren't appearing">
+    **How to fix it**
+
+    Work through each step in order:
+
+    1. **Check your SMS preference** — after your first login, PunctuOwlity shows a notification setup screen. You must have chosen **Allow SMS Notifications** on that screen. If you selected **Deny**, you will need to clear site data and create a fresh account, then choose **Allow** when the setup screen appears again.
+    2. **Check browser permission** — open your browser's site settings for `apursley2012.github.io` and confirm notifications are set to **Allow**, not **Block** or **Ask**.
+    3. **Keep the app open** — PunctuOwlity must be running in an active browser tab. Notifications do not fire in the background or when the tab is closed.
+    4. **Check the Reminder toggle** — open the event and confirm the Reminder toggle is switched **ON**.
+    5. **Verify the event date** — notifications only fire for events dated today. Future or past events do not trigger a notification.
+    6. **One notification per session** — each event fires its notification once per browser session. If you already dismissed it this session, it won't appear again until you start a new session.
+  </Accordion>
+
+  <Accordion title="I signed up but it says my username or email is already taken">
+    **Why this happens**
+
+    PunctuOwlity checks your browser's saved accounts for an existing entry with the same username or email (without regard to capitalisation). If a match is found, the sign-up form rejects the submission to prevent duplicate accounts.
+
+    **How to fix it**
+
+    - Try a different username or a different email address.
+    - If you think the duplicate is your own previous account and you no longer know the password, clear site data for `apursley2012.github.io` in your browser settings and sign up fresh. This removes all stored data, including any existing events.
+  </Accordion>
+
+  <Accordion title="The events screen redirects me to the login page">
+    **Why this happens**
+
+    PunctuOwlity tracks your login state in your browser's session storage, which is cleared when you close the browser tab, close the browser entirely, or restore a session in a new window. Once that login state is gone, the app treats you as unauthenticated and redirects to the login page.
+
+    **How to fix it**
+
+    Log in again — this is expected behaviour. Each new browser session requires a fresh login. If you're being redirected immediately after logging in, try hard-refreshing the page (see below) and logging in once more.
+  </Accordion>
+
+  <Accordion title="The event time shows in 24-hour format">
+    PunctuOwlity converts all times to 12-hour AM/PM format for display. If a card is showing a 24-hour time, the stored value may not have gone through the normalisation step.
+
+    **How to fix it**
+
+    Open the affected event, make no changes (or any minor change), and click **Save**. The confirmation message **Event Updated** will appear. The time will re-normalise to 12-hour format on the card.
+  </Accordion>
+
+  <Accordion title="The layout looks broken or misaligned">
+    A corrupted cache or a partially loaded asset can cause display issues.
+
+    **How to fix it**
+
+    1. Hard-refresh the page to bypass the cache:
+       - **Windows / Linux:** `Ctrl + Shift + R`
+       - **Mac:** `Cmd + Shift + R`
+    2. If the layout is still broken after a hard-refresh, open PunctuOwlity in a different modern browser (Chrome, Firefox, Edge, or Safari) to rule out a browser-specific rendering issue.
+    3. Make sure your browser is up to date — PunctuOwlity relies on standard modern web APIs that older browser versions may not support fully.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  If you encounter an issue not covered here, try hard-refreshing the page first (Ctrl+Shift+R on Windows/Linux, Cmd+Shift+R on Mac). As a last resort, clear site data for `apursley2012.github.io` in your browser settings — but remember that this permanently erases all locally stored events and your account.
+</Note>

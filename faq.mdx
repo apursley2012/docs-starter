@@ -1,0 +1,70 @@
+---
+title: "PunctuOwlity FAQ: Accounts, Storage, and Notifications"
+sidebarTitle: "FAQ"
+description: "Answers to the most common questions about PunctuOwlity: how browser storage works, how accounts are managed, and how notifications are triggered."
+---
+
+PunctuOwlity is a free, browser-based event tracker that keeps all your data local — no servers, no subscriptions, no installs. The questions below cover everything from getting started to understanding how storage and notifications work.
+
+<AccordionGroup>
+  <Accordion title="Is PunctuOwlity free to use?">
+    Yes. PunctuOwlity is completely free and requires no subscription or payment. Visit [apursley2012.github.io/punctuowlity](https://apursley2012.github.io/punctuowlity) and start tracking events right away.
+  </Accordion>
+
+  <Accordion title="Do I need to install anything?">
+    No. PunctuOwlity runs entirely in your browser — just visit the site and sign up. There is no app to download and no browser extension to install.
+  </Accordion>
+
+  <Accordion title="Can I use PunctuOwlity on my phone?">
+    Yes. The layout is fully responsive and adapts to any screen size. On very narrow screens, the event grid switches to a single column so every card remains readable.
+  </Accordion>
+
+  <Accordion title="Where is my data stored?">
+    All your events and account information are saved locally in your browser. Nothing is sent to a server — your data lives entirely on your device and is only accessible from the browser where you signed up.
+  </Accordion>
+
+  <Accordion title="Can I log in from a different device or browser?">
+    No. Because data is stored locally in your browser, your account only exists in the browser where you signed up. If you switch to a different browser or device, you will need to create a new account — there is no way to migrate or sync your existing data.
+  </Accordion>
+
+  <Accordion title="What happens if I clear my browser data?">
+    Clearing site data for `apursley2012.github.io` permanently erases all your events and your account. You will need to sign up again to use PunctuOwlity, and your previous data cannot be recovered. Avoid clearing site data unless you intend to start fresh.
+  </Accordion>
+
+  <Accordion title="Why are there events already on my dashboard when I first log in?">
+    PunctuOwlity loads a small set of sample events the first time you log in and no events are found in your browser. These seed events are there to demonstrate the interface. Feel free to edit or delete any of them at any time — they are treated identically to events you create yourself.
+  </Accordion>
+
+  <Accordion title="Can I log in with my email address instead of my username?">
+    Yes. The login screen accepts either your username or the email address you provided during sign-up. Both are matched without regard to capitalisation, so `Alice` and `alice` resolve to the same account. Your password, however, must match exactly as you entered it when signing up.
+  </Accordion>
+
+  <Accordion title="Why aren't I getting notifications for my events?">
+    Notifications require several conditions to be true at once. Check each of the following:
+
+    - **SMS preference** — you chose **Allow SMS Notifications** during the notification setup screen that appeared after your first login.
+    - **Browser permission** — your browser has notification permission granted for `apursley2012.github.io`.
+    - **App open** — PunctuOwlity must be open in an active browser tab; notifications do not fire in the background.
+    - **Same-day event** — notifications only trigger for events dated today, and only once per session.
+
+    If all four conditions are met and you still see nothing, try hard-refreshing the page and confirming the event's Reminder toggle is switched on.
+  </Accordion>
+
+  <Accordion title="Can I track recurring events?">
+    No. Each event is a one-time entry. For events that repeat — such as weekly meetings — add each occurrence as a separate event.
+  </Accordion>
+
+  <Accordion title="Why does my category tab show 'All Events' even for a birthday I added?">
+    Category detection works by scanning the event title for recognised keywords. The keywords that trigger each category are:
+
+    - **Birthdays** — `birthday`
+    - **Appointments** — `appointment`, `dentist`, `dental`, or `doctor`
+    - **Trips** — `trip`, `travel`, or `vacation`
+
+    If your title does not include one of these words, the event is placed under **All Events** by default. To trigger the correct category automatically, include a matching keyword in the title — for example, **Mom's Birthday** or **Dentist Check-up**.
+  </Accordion>
+
+  <Accordion title="What happens if I forget my password?">
+    PunctuOwlity does not have a password reset or email recovery system. If you cannot remember your password, your only option is to clear your browser's site data for `apursley2012.github.io` and create a new account. Keep in mind that clearing site data also permanently removes all your stored events.
+  </Accordion>
+</AccordionGroup>

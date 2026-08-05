@@ -1,0 +1,59 @@
+---
+title: "Create and Manage Your PunctuOwlity Account Settings"
+sidebarTitle: "Account Setup"
+description: "Learn how to create a PunctuOwlity account, log in using your username or email, and configure your notification preferences after signup."
+---
+
+PunctuOwlity uses a local account system stored entirely in your browser. You create your account once, and from then on you log in with either your username or your email address. This page covers every aspect of account creation, the login flow, and the notification preference screen you see after your first login.
+
+## Creating your account
+
+Open the signup page at [https://apursley2012.github.io/punctuowlity/signup.html](https://apursley2012.github.io/punctuowlity/signup.html), or click **Sign Up** from the login screen. Complete the following fields:
+
+| Field | Required | Notes |
+|---|---|---|
+| First Name | Yes | |
+| Last Name | Yes | |
+| Email Address | Yes | Must be unique — duplicate emails are rejected |
+| Phone | No | Optional; used for SMS alert preferences |
+| Username | Yes | Must be unique — duplicate usernames are rejected |
+| Password | Yes | Case-sensitive; stored locally in your browser |
+| Confirm Password | Yes | Must exactly match the Password field |
+
+Click **Sign Up** to submit the form and create your account.
+
+### Validation rules
+
+PunctuOwlity validates your signup form before saving anything. Keep the following rules in mind:
+
+- **All required fields must be filled.** Submitting with any required field empty shows a toast: *"All required fields must be completed"*
+- **Passwords must match.** If Password and Confirm Password differ, you'll see: *"Passwords do not match!"*
+- **Usernames and email addresses must be unique.** If you enter a username or email that is already registered in this browser, you'll see: *"That username or email is already registered"*
+
+When your account is created successfully, a confirmation toast appears and PunctuOwlity redirects you to the login page.
+
+## Logging in
+
+Navigate to [https://apursley2012.github.io/punctuowlity](https://apursley2012.github.io/punctuowlity) and enter your credentials in the login form.
+
+- **Username or Email** — you can type either your username or your email address in the same field; PunctuOwlity checks both.
+- **Password** — enter your password exactly as you set it. Passwords are case-sensitive.
+
+Click **Login** to sign in. If your credentials do not match any stored account, PunctuOwlity shows the toast: *"Invalid Username or Password"* Double-check that you're using the correct browser and device where your account was originally created.
+
+## Notification preferences
+
+After your first successful login, PunctuOwlity presents the **SMS Alerts** preference screen before you reach the events dashboard. You must make a selection here — you cannot skip directly to the dashboard.
+
+Two choices are available:
+
+| Option | What it does |
+|---|---|
+| **Allow SMS Notifications** | Grants permission for SMS alerts. PunctuOwlity will send you an alert on the day of any event that has its reminder toggle enabled. |
+| **No, thanks** | Declines notifications. You can still use all event features; reminders simply won't trigger browser alerts. |
+
+After you tap either button, PunctuOwlity saves your preference and takes you straight to the events dashboard. If you chose **Allow SMS Notifications** and your browser requires an explicit permission prompt, it will appear at this point.
+
+<Note>
+  PunctuOwlity stores your account entirely in your browser's localStorage. Your account is tied to the specific browser and device you signed up on — you won't be able to log in from a different browser or device without creating a new account there.
+</Note>

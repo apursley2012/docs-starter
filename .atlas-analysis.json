@@ -1,0 +1,93 @@
+{
+  "projectType": "saas",
+  "projectName": "PunctuOwlity",
+  "projectDescription": "PunctuOwlity is a browser-based event tracking app that lets you create, organize, and get reminders for upcoming events — converted from an original Android app and built to run entirely in your browser.",
+  "theme": "almond",
+  "primaryColor": "#f1575d",
+  "lightColor": "#c7d8ea",
+  "darkColor": "#000050",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guide",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "account-setup"
+            ]
+          },
+          {
+            "group": "Using PunctuOwlity",
+            "pages": [
+              "events/overview",
+              "events/add-edit-delete",
+              "events/categories",
+              "events/search"
+            ]
+          },
+          {
+            "group": "Reminders",
+            "pages": [
+              "reminders/overview",
+              "reminders/sms-notifications",
+              "reminders/browser-notifications"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "faq",
+              "troubleshooting"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Learn",
+        "groups": [
+          {
+            "group": "Articles",
+            "pages": [
+              "articles/useful-reminders",
+              "articles/responsive-conversion"
+            ]
+          },
+          {
+            "group": "Case Study",
+            "pages": [
+              "case-study/overview",
+              "case-study/design-decisions"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Create, edit, and delete events with title, date, time, and category",
+    "Four event categories: All Events, Birthdays, Appointments, and Trips",
+    "Real-time search to filter events by title",
+    "Per-event reminder toggle with visible alarm-on / alarm-off status icons",
+    "Optional SMS notification preference at signup",
+    "Browser push notifications for same-day events (when SMS is allowed)",
+    "Secure account creation and login supporting username or email",
+    "Runs entirely in the browser — no server or backend required",
+    "Fully responsive two-column event grid across phone, tablet, and desktop",
+    "Persistent data storage using browser localStorage"
+  ],
+  "publicApiSurface": [
+    "Account signup (firstName, lastName, email, phone, username, password)",
+    "Login via username or email + password",
+    "SMS notification preference: allowed / denied",
+    "Add event (title, date, time, reminder toggle)",
+    "Edit event by ID",
+    "Delete event by ID",
+    "Filter events by category: all | birthday | appointment | trip",
+    "Search events by title keyword",
+    "Toggle per-event reminder (alarm on/off)",
+    "Browser Notification API permission request"
+  ]
+}

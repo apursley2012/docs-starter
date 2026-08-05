@@ -1,0 +1,75 @@
+---
+title: "How to Add, Edit, and Delete Events in PunctuOwlity"
+sidebarTitle: Add & Edit
+description: "A step-by-step guide to creating a new event, editing an existing one, and permanently deleting events you no longer need in PunctuOwlity."
+---
+
+PunctuOwlity makes it straightforward to keep your event list accurate — you can create a new event in seconds, return to fix any detail at any time, and permanently remove events you no longer need. All three actions are available directly from the events dashboard without navigating to a separate settings area.
+
+## Adding an event
+
+<Steps>
+  <Step title="Open the add-event form">
+    Tap the coral **＋** button (the floating action button) in the bottom-right corner of the events screen. This opens the **Add/Edit An Event** form.
+  </Step>
+  <Step title="Enter an event title">
+    Type a descriptive name into the **Event title** field. The title is required — the form will not submit without it. Use a clear name such as *Dentist* or *Nich's Birthday* so PunctuOwlity can auto-detect the category for you.
+  </Step>
+  <Step title="Pick a date">
+    Tap the **Event date** field and use the date picker to select the day the event takes place. The date is required.
+  </Step>
+  <Step title="Set a time">
+    Tap the **Event time** field and use the time picker to set the start time. The time is required — enter the best available time even if the event runs all day.
+  </Step>
+  <Step title="Turn on the reminder (optional)">
+    Toggle the **Would you like to be reminded of this event?** switch to the ON position if you want PunctuOwlity to fire a browser notification on the day of the event.
+  </Step>
+  <Step title="Save the event">
+    Tap **Save Event**. A confirmation toast reading **Event Added** appears briefly, and the app navigates you back to the events dashboard where your new event card is now visible in the grid.
+  </Step>
+</Steps>
+
+## Editing an event
+
+<Steps>
+  <Step title="Locate the event card">
+    On the events dashboard, scroll or search for the event card you want to change.
+  </Step>
+  <Step title="Tap the edit button">
+    Tap the **pencil (edit) icon** in the top-right corner of the card. The edit form opens with every field pre-filled with the event's current values.
+  </Step>
+  <Step title="Review the pre-filled form">
+    The form reopens with the existing title, date, time, and reminder state already populated, so you only need to change the fields that require updating.
+  </Step>
+  <Step title="Make your changes and save">
+    Edit any field you need to update, then tap **Save Event**. A toast reading **Event Updated** confirms the change, and the app returns you to the dashboard.
+  </Step>
+</Steps>
+
+## Deleting an event
+
+To remove an event you no longer need, tap the **trash (delete) icon** in the top-right corner of its event card on the dashboard. The event is removed from the grid immediately and a toast message reading **Event Deleted** confirms the action.
+
+<Warning>
+  Deletion is immediate and cannot be undone. Once you tap the delete icon, the event is permanently removed — there is no confirmation prompt or recycle bin.
+</Warning>
+
+## Event fields reference
+
+The add/edit form contains the following fields:
+
+<ParamField body="Title" type="string" required>
+  The name of your event, displayed on the event card and used for search and category auto-detection. Must be a non-empty string.
+</ParamField>
+
+<ParamField body="Date" type="date" required>
+  The date the event takes place. Selected via the browser's native date picker.
+</ParamField>
+
+<ParamField body="Time" type="time" required>
+  The start time of the event. Selected via the browser's native time picker and displayed in 12-hour format on the event card (e.g. `01:30PM`). Set a time even for loosely-timed events so the card renders correctly.
+</ParamField>
+
+<ParamField body="Would you like to be reminded of this event?" type="boolean">
+  Optional toggle. When enabled, PunctuOwlity fires a browser notification on the day of the event if notification permission has been granted. The alarm icon on the event card turns green when this is on and red when it is off.
+</ParamField>

@@ -1,0 +1,66 @@
+---
+title: 'Building PunctuOwlity: Android to Web Event Tracker'
+sidebarTitle: Overview
+description: 'How a purpose-built Android event tracker was converted into a responsive static web app hosted on GitHub Pages, without redesigning the interface.'
+author: 'Alysha Pursley'
+---
+
+PunctuOwlity is an event-tracking application designed to make upcoming dates, times, and reminders easy to review at a glance. Alysha Pursley originally built the project as an Android application, then adapted the same interface and workflow into a static web application that runs on GitHub Pages — carrying every visual decision, color, and card layout across the platform boundary intact.
+
+## Project Overview
+
+PunctuOwlity supports account creation, login, SMS preference selection, event creation, event editing, event deletion, search, category filters, and reminder status. Its visual identity is defined by a light blue background (`#c7d8ea`), a coral toolbar and action buttons (`#f1575d`), a teal date banner (`#2fc7c9`), and navy text (`#000050`). A custom owl logo — combining a calendar and a clock — sits centered in the toolbar and anchors the application's personality across every screen.
+
+The goal of the web conversion was not to reimagine the app. The browser version was required to preserve the Android layout and personality while scaling cleanly beyond the original phone-sized screen.
+
+## The Problem
+
+The Android project depended on activities, XML layouts, Material components, vector drawables, SQLite, and device permissions. None of those pieces transfer directly to a static website. Reproducing the interface meant rewriting it in HTML and CSS, replacing Android's activity-based navigation with page-based navigation, and rebuilding all application logic in JavaScript — without introducing any server requirement.
+
+The conversion also had to honor a specific compositional constraint: preserve the original two-column event grid. A standard desktop redesign would spread cards across three or four columns as more horizontal space became available, but that would change the composition and feel of the interface entirely. Instead, the web layout keeps the same two-column structure and scales the complete interface proportionally across screen sizes.
+
+## Core Requirements
+
+The following nine requirements defined the scope of the conversion from the outset:
+
+<Steps>
+  <Step title="Start at the login page">
+    The app opens on the login page, matching the behavior of the Android launcher activity.
+  </Step>
+  <Step title="Local user accounts">
+    User accounts are created and stored locally, capturing first name, last name, email address, optional phone number, username, and password.
+  </Step>
+  <Step title="Username or email login">
+    The login page accepts either the saved username or email address paired with the correct password.
+  </Step>
+  <Step title="Preserve the SMS step">
+    The SMS preference screen is presented on first arrival at the events screen after login, preserving the original Android onboarding sequence even on a static site.
+  </Step>
+  <Step title="Full event CRUD with search and filters">
+    Users can add, edit, display, search, filter by category, and delete events from the same interface.
+  </Step>
+  <Step title="Weekday and day number calculation">
+    Each saved event date is parsed to produce the weekday abbreviation and the two-digit day number that appear on the event card.
+  </Step>
+  <Step title="Reminder storage and alarm icons">
+    Reminder status is stored per event, and the correct alarm-on or alarm-off icon is rendered on the card to reflect the current setting.
+  </Step>
+  <Step title="Screenshot-accurate visual fidelity">
+    Colors, typography, logo, icons, spacing, and card arrangement must match the supplied Android screenshots.
+  </Step>
+  <Step title="Responsive without redesign">
+    The interface scales to any screen size without rearranging into a different layout or introducing new design patterns.
+  </Step>
+</Steps>
+
+## Design and Interface
+
+The Android XML layouts and completed screenshots served as the source of truth throughout the build. Every measurement, spacing value, and component hierarchy was derived from those materials rather than invented during the conversion.
+
+The main screen preserves the coral toolbar with the centered owl logo, the "Upcoming Events" heading, an outlined search field, the teal month banner, dotted dividers between sections, evenly distributed category filter tabs, a dark event-grid frame, white event cards, and a coral floating action button for adding new events. None of these elements were simplified or replaced with generic web equivalents.
+
+Event cards follow a strict top-to-bottom hierarchy inherited from the Android layout: the weekday abbreviation and reminder icon appear at the top, followed by the large date number, then the event title, and finally the time in 12-hour format. Edit and delete controls sit in the upper-right corner of each card, matching the Android version's interaction pattern exactly.
+
+---
+
+For the technical decisions behind storage, authentication, reminders, and responsive behavior, continue to [Design Decisions](/case-study/design-decisions).

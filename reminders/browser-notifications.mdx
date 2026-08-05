@@ -1,0 +1,60 @@
+---
+title: "Enable Browser Notifications for PunctuOwlity Reminders"
+sidebarTitle: Browser Notifications
+description: "Learn how browser notifications work in PunctuOwlity, what triggers them, and how to manage notification permissions in Chrome, Firefox, and Safari."
+---
+
+PunctuOwlity delivers event reminders as browser pop-up notifications — the same kind your operating system surfaces for email, calendar apps, and other services. When conditions are right, a notification appears on your screen showing the event title and time, so you can act on it without switching back to the app.
+
+## How browser notifications work
+
+PunctuOwlity uses the browser's built-in **Notification API** to display event reminders without requiring any installed software or native app.
+
+- **Permission follows your preference.** If you chose **Allow SMS Notifications** during the one-time setup after signup, PunctuOwlity requests your browser's notification permission as soon as you reach the events screen. Your browser may show its own confirmation dialog — you need to allow it there as well.
+- **Notifications appear at the system level.** Once permission is granted, reminders surface as standard system notifications — the same kind you see from any other app on your device. They appear even if PunctuOwlity is not your active tab.
+- **Same-day delivery only.** PunctuOwlity checks today's date each time you open the app and fires notifications only for events scheduled on the current date.
+- **Once per session.** Each notification fires at most once per browser session. If you reload the page or navigate away and return, you will not see the same notification again until you start a new browser session.
+
+## What triggers a notification
+
+All four of the following conditions must be true for a notification to fire:
+
+1. **The event's date matches today's date.** PunctuOwlity compares each event's stored date against the current date when the app loads.
+2. **The event has its Reminder toggle switched on.** Events with the red alarm-off icon will not trigger a notification, even if all other conditions are met.
+3. **You have allowed notifications in your browser.** Both your PunctuOwlity SMS preference must be set to **Allow SMS Notifications** *and* your browser must have granted notification permission for `apursley2012.github.io`.
+4. **You have not already seen the notification in this session.** PunctuOwlity records each fired notification in session storage. If the notification has already appeared during your current session, it will not repeat.
+
+## Managing notification permissions
+
+If you need to review or change the notification permission for PunctuOwlity, use your browser's settings.
+
+<Tabs>
+  <Tab title="Chrome">
+    1. Open Chrome and select the three-dot menu in the top-right corner.
+    2. Go to **Settings** → **Privacy and security** → **Site settings**.
+    3. Under **Permissions**, select **Notifications**.
+    4. Find `apursley2012.github.io` in the **Allowed** or **Not allowed** list.
+    5. Click the entry to change the permission to **Allow** or **Block**.
+  </Tab>
+  <Tab title="Firefox">
+    1. Open Firefox and select the hamburger menu in the top-right corner.
+    2. Go to **Settings** → **Privacy & Security**.
+    3. Scroll to the **Permissions** section and click **Settings** next to **Notifications**.
+    4. Find `apursley2012.github.io` in the list.
+    5. Use the **Status** dropdown to change the permission to **Allow** or **Block**, then click **Save Changes**.
+  </Tab>
+  <Tab title="Safari">
+    1. Navigate to [apursley2012.github.io/punctuowlity](https://apursley2012.github.io/punctuowlity) in Safari.
+    2. Open the **Safari** menu in the menu bar.
+    3. Select **Settings for This Website**.
+    4. Find **Notifications** in the panel and set it to **Allow** or **Deny**.
+  </Tab>
+</Tabs>
+
+<Tip>
+  If PunctuOwlity has notification permission in your browser but you still do not see any pop-ups, check your device's system-level notification settings. On macOS, go to **System Settings → Notifications** and confirm that your browser is allowed to send notifications. On Windows, check **Settings → System → Notifications** and make sure notifications are enabled for your browser.
+</Tip>
+
+<Note>
+  Notifications only fire while PunctuOwlity is open in a browser tab. The app does not run in the background and cannot send notifications after you close the tab or quit your browser.
+</Note>
