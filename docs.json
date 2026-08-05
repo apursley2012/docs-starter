@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "PunctuOwlity",
-  "theme": "luma",
+  "theme": "almond",
 
   "fonts": {
     "heading": {
