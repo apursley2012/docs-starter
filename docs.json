@@ -1,9 +1,9 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "PunctuOwlity",
-  "theme": "almond",
+  "theme": "willow",
   "colors": {
-    "primary": "#f1575d",
+    "primary": "#2fc7c9",
     "light": "#c7d8ea",
     "dark": "#000050"
   },
